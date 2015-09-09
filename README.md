@@ -7,7 +7,10 @@ It's like `String` but for bytes. `Bytes` is an essential building block in immu
     Bytes bytes = new Bytes(new byte[] { (byte) 1, (byte) 2, (byte) 3 });
     
     // Efficiently build sequences with a fluent API
-    Bytes payload = new BytesBuilder().append(senderId).append(topicId).append(messageBytes).toBytes();
+    Bytes payload = new BytesBuilder().
+        append(senderId).
+        append(topicId).
+        append(messageBytes).toBytes();
     
     // Don't worry; it's thread-safe
     notifyListeners(payload);
