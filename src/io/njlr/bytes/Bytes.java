@@ -1,6 +1,7 @@
 package io.njlr.bytes;
 
 import java.io.Serializable;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Objects;
@@ -15,6 +16,8 @@ import java.util.Objects;
  */
 public final class Bytes implements Comparable<Bytes>, Serializable {
 
+	public static final Bytes empty = new Bytes(new byte[0]);
+	
 	private static final long serialVersionUID = 5800213226235668619L;
 	
 	private final byte[] value;
@@ -123,6 +126,11 @@ public final class Bytes implements Comparable<Bytes>, Serializable {
     	
     	return new Bytes(Arrays.copyOfRange(value, beginIndex, endIndex));
     }
+    
+    public BytesReader read() {
+    	
+    	return new BytesReader(this);
+    }
 
 	@Override
 	public int hashCode() {
@@ -160,7 +168,6 @@ public final class Bytes implements Comparable<Bytes>, Serializable {
 		
 		return false;
 	}
-	
 
     /**
      * Creates a String representing the <code>Bytes</code> object. 
@@ -171,7 +178,7 @@ public final class Bytes implements Comparable<Bytes>, Serializable {
 	@Override
 	public String toString() {
 		
-		return new StringBuilder().append("Bytes{").append(new String(value, StandardCharsets.UTF_8)).append("}").toString();
+		return new StringBuilder().append("Bytes{").append(StandardCharsets.US_ASCII.decode(ByteBuffer.wrap(value))).append("}").toString();
 	}
 
 	/* (non-Javadoc)
@@ -216,5 +223,17 @@ public final class Bytes implements Comparable<Bytes>, Serializable {
 	public static Bytes of(final byte[] value) {
 		
 		return new Bytes(value);
+	}
+	
+    /**
+     * Returns the <code>Bytes</code> representation of a given <code>byte</code>. 
+     * The array is copied to protect the immutability of the <code>Bytes</code> object. 
+     *
+     * @param   value	a <code>byte</code>.
+     * @return  a new <code>Bytes</code> instance representing the given <code>byte</code> argument.
+     */
+	public static Bytes of(final byte value) {
+		
+		return new Bytes(new byte[] { value });
 	}
 }
