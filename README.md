@@ -1,5 +1,9 @@
 # Bytes
+
 It's like `String` but for bytes. `Bytes` is an essential building block in immutable network messages for high concurrency programs. 
+
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/hq7GXSxnYW3qEM98fqMVob9v/njlr/Bytes'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/hq7GXSxnYW3qEM98fqMVob9v/njlr/Bytes.svg' /></a>
+
 
 ## 5 Second Demo
 
